@@ -8,7 +8,9 @@ import Counter from "./components/counterComponent";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Counter counterProps={{ key: 2, value: 4 }} />
+    <Counter counterProps={{ key: 2, value: 4 }}>
+      <i>Click Next Button</i>
+    </Counter>
   </React.StrictMode>,
   document.getElementById("root")
 );

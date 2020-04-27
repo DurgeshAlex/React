@@ -15,6 +15,7 @@ class Counter extends Component {
         <span style={this.styles} className={this.getBadgeClasses()}>
           {this.state.value}
         </span>
+        {this.props.children}
         <button
           style={this.styles}
           className="btn btn-primary"
