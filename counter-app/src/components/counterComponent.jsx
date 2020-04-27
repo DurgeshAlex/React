@@ -18,18 +18,19 @@ class Counter extends Component {
         <button style={{ fontSize: "10px" }} className="btn btn-primary">
           Increment
         </button>
-        <ul>
-          {this.state.tags.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
+        <ul>{this.renderTags()}</ul>
       </React.Fragment>
     );
   }
-
+  renderTags() {
+    if (this.state.tags.length === 0) {
+      return <p>There is not tags to display</p>;
+    }
+    return this.state.tags.map((tag) => <li key={tag}>{tag}</li>);
+  }
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.counter == 0 ? "primary" : "warning";
+    classes += this.state.counter === 0 ? "primary" : "warning";
     return classes;
   }
 }
