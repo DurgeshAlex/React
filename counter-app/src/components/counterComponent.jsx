@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    counter: 0,
+    counter: 1,
     imageUrl: "https://picsum.photos/200",
   };
   styles = {
@@ -13,7 +13,7 @@ class Counter extends Component {
     return (
       <React.Fragment>
         <img src={this.state.imageUrl} alt="" />
-        <span style={this.styles} className="badge badge-primary m-2">
+        <span style={this.styles} className={this.getBadgeClasses()}>
           {this.state.counter}
         </span>
         <button style={{ fontSize: "10px" }} className="btn btn-primary">
@@ -21,6 +21,12 @@ class Counter extends Component {
         </button>
       </React.Fragment>
     );
+  }
+
+  getBadgeClasses() {
+    let classes = "badge m-2 badge-";
+    classes += this.state.counter == 0 ? "primary" : "warning";
+    return classes;
   }
 }
 
