@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     counter: 1,
-    imageUrl: "https://picsum.photos/200",
+    tags: ["tag1", "tag2", "tag3"],
   };
   styles = {
     fontWeight: 30,
@@ -12,13 +12,17 @@ class Counter extends Component {
   render() {
     return (
       <React.Fragment>
-        <img src={this.state.imageUrl} alt="" />
         <span style={this.styles} className={this.getBadgeClasses()}>
           {this.state.counter}
         </span>
         <button style={{ fontSize: "10px" }} className="btn btn-primary">
           Increment
         </button>
+        <ul>
+          {this.state.tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
       </React.Fragment>
     );
   }
