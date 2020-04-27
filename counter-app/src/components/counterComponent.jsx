@@ -2,55 +2,38 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    counter: 1,
-    tags: ["tag1", "tag2", "tag3"],
+    value: this.props.counterProps.value,
   };
   styles = {
-    fontWeight: 30,
-    fontSize: 40,
+    fontWeight: 20,
+    fontSize: 20,
   };
 
-  //   constructor() {
-  //     super();
-  //     this.handleIncrement = this.handleIncrement.bind(this);
-  //   }
   render() {
     return (
       <React.Fragment>
         <span style={this.styles} className={this.getBadgeClasses()}>
-          {this.state.counter}
+          {this.state.value}
         </span>
         <button
-          style={{ fontSize: "10px" }}
+          style={this.styles}
           className="btn btn-primary"
           onClick={this.handleIncrement}
         >
           Increment
         </button>
-        <ul>{this.renderTags()}</ul>
       </React.Fragment>
     );
   }
-  //   handleIncrement() {
-  //     this.setState({ counter: this.state.counter + 1 });
-  //   }
+
   handleIncrement = () => {
-    this.setState({ counter: this.state.counter + 1 });
+    console.log("called");
+    this.setState({ value: this.state.value + 1 });
   };
 
-  handleIncrement() {
-    this.setState({ counter: this.state.counter + 1 });
-  }
-
-  renderTags() {
-    if (this.state.tags.length === 0) {
-      return <p>There is not tags to display</p>;
-    }
-    return this.state.tags.map((tag) => <li key={tag}>{tag}</li>);
-  }
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.counter === 0 ? "primary" : "warning";
+    classes += this.state.value === 0 ? "primary" : "warning";
     return classes;
   }
 }
