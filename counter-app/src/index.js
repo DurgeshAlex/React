@@ -5,12 +5,11 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import Counter from "./components/counterComponent";
+import Counters from "./components/countersComponent";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Counter counterProps={{ key: 2, value: 4 }}>
-      <i>Click Next Button</i>
-    </Counter>
+    <Counters />
   </React.StrictMode>,
   document.getElementById("root")
 );
