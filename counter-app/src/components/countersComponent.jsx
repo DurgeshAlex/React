@@ -10,6 +10,7 @@ class Counters extends Component {
       { key: 4, value: 4 },
     ],
   };
+
   render() {
     return (
       <React.Fragment>
@@ -29,8 +30,9 @@ class Counters extends Component {
       </React.Fragment>
     );
   }
+
   handleIncrement = (counter) => {
-    console.log("handleIncrement called. with counter", counter);
+    console.log("handleIncrement called");
     const counters = [...this.state.counters];
     const counterIndex = counters.indexOf(counter);
     counters[counterIndex].value++;
@@ -43,8 +45,10 @@ class Counters extends Component {
     console.log(counters);
   };
   handleDelete = (key) => {
+    console.log("handleDelete called");
+
     const newCounters = this.state.counters.filter((counter) => {
-      console.log(counter.key, key);
+      // console.log(counter.key, key);
       return counter.key !== key;
     });
     this.setState({ counters: newCounters });

@@ -5,8 +5,17 @@ class Counter extends Component {
     fontWeight: 20,
     fontSize: 20,
   };
+  constructor(props) {
+    super(props);
+    console.log(
+      "App Construtor invoked for counter",
+      this.props.counterProps.key
+    );
+  }
   counter = this.props.counterProps;
+
   render() {
+    console.log("App Render invoked for counter", this.props.counterProps.key);
     return (
       <React.Fragment>
         <span style={this.styles} className={this.getBadgeClasses()}>
@@ -29,7 +38,24 @@ class Counter extends Component {
       </React.Fragment>
     );
   }
-
+  componentDidMount() {
+    console.log(
+      "App ComponentDidMoun invoked for counter",
+      this.props.counterProps.key
+    );
+  }
+  componentDidUpdate() {
+    console.log(
+      "App ComponentDidUpdate invoked for counter",
+      this.props.counterProps.key
+    );
+  }
+  componentWillUnmount() {
+    console.log(
+      "App componentWillUnmount invoked for counter",
+      this.props.counterProps.key
+    );
+  }
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
     classes += this.counter.value === 0 ? "primary" : "warning";
