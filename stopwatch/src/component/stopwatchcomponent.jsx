@@ -13,10 +13,10 @@ class StopWatch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hrs: 0,
-      min: 0,
-      sec: 0,
-      mils: 0,
+      hrs: "00",
+      min: "00",
+      sec: "00",
+      mils: "000",
       pauseDisabled: true,
     };
   }
@@ -29,25 +29,25 @@ class StopWatch extends Component {
         <div class="card text-center border-success m-3">
           <div class="card-body">
             <div>
-              <div className="badge badge-success">
+              <div className="badge badge-success mr-2">
                 <span className="text-monospace" style={heightWeidth}>
                   {this.state.hrs}
                 </span>
               </div>
-              :
-              <div className="badge badge-success">
+
+              <div className="badge badge-success mr-2">
                 <span className="text-monospace" style={heightWeidth}>
                   {this.state.min}
                 </span>
               </div>
-              :
-              <div className="badge badge-success">
+
+              <div className="badge badge-success mr-2">
                 <span className="text-monospace" style={heightWeidth}>
                   {this.state.sec}
                 </span>
               </div>
-              :
-              <div className="badge badge-success">
+
+              <div className="badge badge-success ">
                 <span className="text-monospace" style={heightWeidth}>
                   {this.state.mils}
                 </span>
@@ -87,9 +87,9 @@ class StopWatch extends Component {
   updateTimes = () => {
     let date = new Date();
     let mils = parseInt(this.state.mils);
-    let hrs = this.state.hrs;
-    let min = this.state.min;
-    let sec = this.state.sec;
+    let hrs = parseInt(this.state.hrs);
+    let min = parseInt(this.state.min);
+    let sec = parseInt(this.state.sec);
     mils = mils + 10;
     if (mils === 1000) {
       mils = 0;
@@ -106,7 +106,11 @@ class StopWatch extends Component {
     if (hrs === 24) {
       clearInterval(this.interval);
     }
+    hrs = String(hrs).padStart(2, "0");
+    min = String(min).padStart(2, "0");
+    sec = String(sec).padStart(2, "0");
     mils = String(mils).padStart(3, "0");
+
     this.setState({
       hrs: hrs,
       min: min,
@@ -121,10 +125,10 @@ class StopWatch extends Component {
     clearInterval(this.interval);
     this.interval = null;
     this.setState({
-      hrs: 0,
-      min: 0,
-      sec: 0,
-      mils: 0,
+      hrs: "00",
+      min: "00",
+      sec: "00",
+      mils: "000",
       pauseDisabled: true,
     });
     this.stopWatchStatus = this.stopWatchStatuses.STOPED;
