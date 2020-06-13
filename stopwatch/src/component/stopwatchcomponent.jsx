@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import "font-awesome/css/font-awesome.min.css";
 
 class StopWatch extends Component {
-  interval;
+  interval = null;
+  stopWatchStatuses = {
+    PAUSED: "paused",
+    STOPED: "stoped",
+    RUNNING: "running",
+  };
+  stopWatchStatus = this.stopWatchStatuses.STOPED;
   constructor(props) {
     super(props);
     this.state = {
@@ -10,8 +17,8 @@ class StopWatch extends Component {
       min: 0,
       sec: 0,
       mils: 0,
+      pauseDisabled: true,
     };
-    this.interval = setInterval(this.startStopWatch, 10);
   }
   render() {
     const heightWeidth = {
@@ -19,35 +26,65 @@ class StopWatch extends Component {
     };
     return (
       <React.Fragment>
-        <div>
-          <div className="badge badge-info">
-            <span className="text-monospace" style={heightWeidth}>
-              {this.state.hrs}
-            </span>
+        <div class="card text-center border-success m-3">
+          <div class="card-body">
+            <div>
+              <div className="badge badge-success">
+                <span className="text-monospace" style={heightWeidth}>
+                  {this.state.hrs}
+                </span>
+              </div>
+              :
+              <div className="badge badge-success">
+                <span className="text-monospace" style={heightWeidth}>
+                  {this.state.min}
+                </span>
+              </div>
+              :
+              <div className="badge badge-success">
+                <span className="text-monospace" style={heightWeidth}>
+                  {this.state.sec}
+                </span>
+              </div>
+              :
+              <div className="badge badge-success">
+                <span className="text-monospace" style={heightWeidth}>
+                  {this.state.mils}
+                </span>
+              </div>
+            </div>
           </div>
-          :
-          <div className="badge badge-info">
-            <span className="text-monospace" style={heightWeidth}>
-              {this.state.min}
-            </span>
-          </div>
-          :
-          <div className="badge badge-info">
-            <span className="text-monospace" style={heightWeidth}>
-              {this.state.sec}
-            </span>
-          </div>
-          :
-          <div className="badge badge-info">
-            <span className="text-monospace" style={heightWeidth}>
-              {this.state.mils}
-            </span>
+          <div class="card-footer bg-warning p-0">
+            {" "}
+            <div>
+              <button
+                className="btn btn-sm btn-success m-2"
+                onClick={this.stopWatchBtnEvent("start")}
+              >
+                <span className={this.stopWatchBtnCss("start")}></span>
+              </button>
+
+              <button
+                className="btn btn-sm btn-success"
+                onClick={this.stopWatchBtnEvent("pause")}
+                disabled={this.state.pauseDisabled}
+              >
+                <span className={this.stopWatchBtnCss("pause")}></span>
+              </button>
+            </div>
           </div>
         </div>
       </React.Fragment>
     );
   }
   startStopWatch = () => {
+    console.log("Stop watch started.");
+    if (this.interval == null) {
+      this.interval = setInterval(this.updateTimes, 10);
+    }
+    this.stopWatchStatus = this.stopWatchStatuses.RUNNING;
+  };
+  updateTimes = () => {
     let date = new Date();
     let mils = parseInt(this.state.mils);
     let hrs = this.state.hrs;
@@ -75,8 +112,86 @@ class StopWatch extends Component {
       min: min,
       sec: sec,
       mils: mils,
+      pauseDisabled: false,
     });
   };
+
+  stopStopWatch = () => {
+    console.log("Stop watch stopped");
+    clearInterval(this.interval);
+    this.interval = null;
+    this.setState({
+      hrs: 0,
+      min: 0,
+      sec: 0,
+      mils: 0,
+      pauseDisabled: true,
+    });
+    this.stopWatchStatus = this.stopWatchStatuses.STOPED;
+  };
+
+  pauseStopWatch = () => {
+    console.log("Stop watch paused");
+    clearInterval(this.interval);
+    this.interval = null;
+    this.stopWatchStatus = this.stopWatchStatuses.PAUSED;
+    this.setState({
+      hrs: this.state.hrs,
+      min: this.state.min,
+      sec: this.state.sec,
+      mils: this.state.mils,
+    });
+  };
+  stopWatchBtnCss(btnType) {
+    console.log("stopWatchBtnCss called");
+    if (btnType === "start") {
+      if (this.stopWatchStatus === this.stopWatchStatuses.STOPED) {
+        return "fa fa-play";
+      }
+      if (
+        this.stopWatchStatus === this.stopWatchStatuses.RUNNING ||
+        this.stopWatchStatus === this.stopWatchStatuses.PAUSED
+      ) {
+        return "fa fa-stop";
+      }
+    }
+    if (btnType === "pause") {
+      if (this.stopWatchStatus === this.stopWatchStatuses.STOPED) {
+        return "fa fa-pause disabled";
+      }
+      if (this.stopWatchStatus === this.stopWatchStatuses.RUNNING) {
+        return "fa fa-pause";
+      }
+      if (this.stopWatchStatus === this.stopWatchStatuses.PAUSED) {
+        return "fa fa-play";
+      }
+    }
+  }
+  stopWatchBtnEvent(btnType) {
+    console.log("stopWatchBtnEvent called");
+    if (btnType === "start") {
+      if (this.stopWatchStatus === this.stopWatchStatuses.STOPED) {
+        return this.startStopWatch;
+      }
+      if (
+        this.stopWatchStatus === this.stopWatchStatuses.RUNNING ||
+        this.stopWatchStatus === this.stopWatchStatuses.PAUSED
+      ) {
+        return this.stopStopWatch;
+      }
+    }
+    if (btnType === "pause") {
+      if (this.stopWatchStatus === this.stopWatchStatuses.STOPED) {
+        return this.pauseStopWatch;
+      }
+      if (this.stopWatchStatus === this.stopWatchStatuses.RUNNING) {
+        return this.pauseStopWatch;
+      }
+      if (this.stopWatchStatus === this.stopWatchStatuses.PAUSED) {
+        return this.startStopWatch;
+      }
+    }
+  }
 }
 
 export default StopWatch;
