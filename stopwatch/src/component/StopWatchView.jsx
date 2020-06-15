@@ -40,7 +40,6 @@ class StopWatchView extends Component {
               </div>
             </div>
           </div>
-          <div class="card-footer bg-warning p-0"> </div>
         </div>
       </React.Fragment>
     );

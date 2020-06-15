@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import StopWatchView from "./component/StopWatchView";
 import StopWatchControl from "./component/stopwatchcontrolls";
+import StopWatchLapsView from "./component/StopWatchLapsView";
 
 class StopWatch extends Component {
   stopWatchStatuses = {
@@ -18,11 +19,13 @@ class StopWatch extends Component {
       sec: "00",
       mils: "000",
       pauseDisabled: true,
+      lapsDisabled: true,
       stopWatchStatus: this.stopWatchStatuses.STOPED,
+      laps: new Array(),
     };
   }
   style = {
-    maxWidth: "30rem",
+    maxWidth: "40rem",
     padding: "100px 0",
   };
 
@@ -31,24 +34,36 @@ class StopWatch extends Component {
       <div className="App">
         <div className="row">
           <div className="col col-sm-12 mx-auto" style={this.style}>
-            <div className="card mb-3 p-5">
-              <div className="card-body">
-                <h5 className="card-title">STOP WATCH </h5>
-                <StopWatchView
-                  hrs={this.state.hrs}
-                  min={this.state.min}
-                  sec={this.state.sec}
-                  mils={this.state.mils}
-                />
+            <div className="row">
+              <div className="col col-sm-7">
+                <div className="card mb-3 border-success">
+                  <div className="card-body">
+                    <h5 className="">STOP WATCH </h5>
+
+                    <StopWatchView
+                      hrs={this.state.hrs}
+                      min={this.state.min}
+                      sec={this.state.sec}
+                      mils={this.state.mils}
+                    />
+                  </div>
+                  <div className="card-footer  bg-warning">
+                    <StopWatchControl
+                      pauseDisabled={this.state.pauseDisabled}
+                      onstartStopWatch={this.startStopWatch}
+                      onPauseStopWatch={this.pauseStopWatch}
+                      onStopStopWatch={this.stopStopWatch}
+                      stopWatchStatus={this.state.stopWatchStatus}
+                      lapsDisabled={this.state.lapsDisabled}
+                      onLapsClick={this.lapsClick}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="card-footer">
-                <StopWatchControl
-                  pauseDisabled={this.state.pauseDisabled}
-                  onstartStopWatch={this.startStopWatch}
-                  onPauseStopWatch={this.pauseStopWatch}
-                  onStopStopWatch={this.stopStopWatch}
-                  stopWatchStatus={this.state.stopWatchStatus}
-                />
+              <div className="col col-sm-5">
+                <h5 className="">LAPS </h5>
+
+                <StopWatchLapsView laps={this.state.laps} />
               </div>
             </div>
           </div>
@@ -63,7 +78,10 @@ class StopWatch extends Component {
     }
     console.log("Setting Stop watch state as.", this.stopWatchStatuses.RUNNING);
 
-    this.setState({ stopWatchStatus: this.stopWatchStatuses.RUNNING });
+    this.setState({
+      stopWatchStatus: this.stopWatchStatuses.RUNNING,
+      lapsDisabled: false,
+    });
   };
   updateTimes = () => {
     let date = new Date();
@@ -111,6 +129,7 @@ class StopWatch extends Component {
       sec: this.state.sec,
       mils: this.state.mils,
       stopWatchStatus: this.stopWatchStatuses.PAUSED,
+      lapsDisabled: true,
     });
   };
 
@@ -125,7 +144,22 @@ class StopWatch extends Component {
       mils: "000",
       pauseDisabled: true,
       stopWatchStatus: this.stopWatchStatuses.STOPED,
+      lapsDisabled: true,
+      laps: new Array(),
     });
+  };
+  lapsClick = () => {
+    const value =
+      this.state.hrs +
+      ":" +
+      this.state.min +
+      ":" +
+      this.state.sec +
+      "." +
+      this.state.mils;
+    let laps = this.state.laps;
+    laps.push(value);
+    this.setState({ laps: laps });
   };
 }
 

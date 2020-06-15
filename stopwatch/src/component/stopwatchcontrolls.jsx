@@ -17,18 +17,25 @@ class StopWatchControl extends Component {
       <React.Fragment>
         <div>
           <button
-            className="btn btn-sm btn-success m-2"
+            className="btn btn-sm btn-success mr-2"
             onClick={this.stopWatchBtnEvent("start")}
           >
             <span className={this.stopWatchBtnCss("start")}></span>
           </button>
 
           <button
-            className="btn btn-sm btn-success"
+            className="btn btn-sm btn-success mr-2"
             onClick={this.stopWatchBtnEvent("pause")}
             disabled={this.props.pauseDisabled}
           >
             <span className={this.stopWatchBtnCss("pause")}></span>
+          </button>
+          <button
+            className="btn btn-sm btn-success"
+            onClick={this.stopWatchBtnEvent("laps")}
+            disabled={this.props.lapsDisabled}
+          >
+            <span className={this.stopWatchBtnCss("laps")}>Laps</span>
           </button>
         </div>
       </React.Fragment>
@@ -59,6 +66,8 @@ class StopWatchControl extends Component {
         return "fa fa-play";
       }
     }
+    if (btnType === "laps") {
+    }
   }
   stopWatchBtnEvent(btnType) {
     console.log("stopWatchBtnEvent called", this.stopWatchStatus);
@@ -82,6 +91,11 @@ class StopWatchControl extends Component {
       }
       if (this.props.stopWatchStatus === this.stopWatchStatuses.PAUSED) {
         return this.props.onstartStopWatch;
+      }
+    }
+    if (btnType === "laps") {
+      if (this.props.stopWatchStatus === this.stopWatchStatuses.RUNNING) {
+        return this.props.onLapsClick;
       }
     }
   }
