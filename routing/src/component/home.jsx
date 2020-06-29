@@ -5,11 +5,14 @@ class HomeComponent extends Component {
     super(props);
     this.state = {};
   }
+  style = {
+    textAlign: "center",
+  };
   render() {
     return (
       <div>
         <div class="row">
-          <div class="col col-sm-12 mx-auto">
+          <div class="col col-sm-12 mx-auto" style={this.style}>
             <h1>Home</h1>
           </div>
           <div class="col col-sm-12">

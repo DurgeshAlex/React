@@ -5,22 +5,46 @@ class ContactUsComponent extends Component {
     super(props);
     this.state = {};
   }
+  style = {
+    textAlign: "center",
+  };
   render() {
     return (
       <div>
         <div class="row">
-          <div class="col col-sm-12 mx-auto">
+          <div class="col col-sm-12 mx-auto" style={this.style}>
             <h1>Contact Us</h1>
           </div>
           <div class="col col-sm-12">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-              finibus consectetur lorem, a pellentesque lorem commodo id. Nullam
-              non lacinia ligula. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Mauris euismod justo vitae erat lobortis
-              fermentum. Etiam volutpat leo vel erat commodo, auctor varius nisi
-              rutrum. In non mollis erat, vel sagittis velit. Nunc porta
-              venenatis erat, quis fermentum eros tincidunt quis. Duis id
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+              feugiat nisi fringilla tellus interdum posuere. Etiam faucibus
+              velit a ex condimentum, sed viverra lorem aliquet. In sed leo quis
+              ex tincidunt consequat. Morbi sed ipsum et metus euismod
+              sollicitudin id eget justo. Maecenas tristique tellus id ligula
+              venenatis rhoncus. In quis diam malesuada, egestas sem eget,
+              sagittis est. Aenean scelerisque urna quis pellentesque molestie.
+              Nulla vitae nisi pulvinar, vehicula augue id, euismod nisi. Proin
+              sollicitudin arcu vitae vulputate dignissim. Fusce posuere lectus
+              vitae erat pulvinar lobortis. Praesent finibus risus id sodales
+              semper. In quis enim mollis, vehicula leo ut, pharetra felis.
+              Fusce suscipit mauris a turpis feugiat, et ultricies odio gravida.
+              Curabitur vestibulum orci id vestibulum vulputate. Sed maximus
+              nisi tempus, tristique urna ac, ornare est. Donec tristique lorem
+              quis metus gravida dignissim. Etiam elementum augue sagittis erat
+              porttitor, nec molestie diam lacinia. Sed ut massa eget mi
+              ultricies tempus. Duis rhoncus elit consectetur arcu malesuada, ut
+              tristique orci mattis. Morbi consequat magna eget mauris porta,
+              nec tempor purus cursus. Mauris aliquet ante vel lorem vulputate,
+              id eleifend tellus tristique. Phasellus lobortis lectus eget erat
+              molestie iaculis. Pellentesque et diam scelerisque, commodo ante
+              eu, pharetra erat. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Cras finibus consectetur lorem, a pellentesque
+              lorem commodo id. Nullam non lacinia ligula. Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit. Mauris euismod justo vitae erat
+              lobortis fermentum. Etiam volutpat leo vel erat commodo, auctor
+              varius nisi rutrum. In non mollis erat, vel sagittis velit. Nunc
+              porta venenatis erat, quis fermentum eros tincidunt quis. Duis id
               tincidunt enim. Sed eros velit, fermentum vel malesuada sit amet,
               ultricies et metus. Nunc quis purus vitae arcu convallis interdum
               a ut velit. Morbi suscipit viverra lectus, maximus efficitur

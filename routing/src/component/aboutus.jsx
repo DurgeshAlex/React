@@ -5,11 +5,14 @@ class AboutUsComponent extends Component {
     super(props);
     this.state = {};
   }
+  style = {
+    textAlign: "center",
+  };
   render() {
     return (
       <div>
         <div class="row">
-          <div class="col col-sm-12 mx-auto">
+          <div class="col col-sm-12" style={this.style}>
             <h1>About Us</h1>
           </div>
           <div class="col col-sm-12">
@@ -42,20 +45,6 @@ class AboutUsComponent extends Component {
               Integer ornare ornare tempus. Vestibulum ante ipsum primis in
               faucibus orci luctus et ultrices posuere cubilia curae; Sed et
               efficitur libero. Aenean eget pretium velit. Vestibulum mauris
-              eros, rutrum ullamcorper suscipit vitae, sollicitudin sit amet
-              tortor. Pellentesque habitant morbi tristique senectus et netus et
-              malesuada fames ac turpis egestas. Aenean in pellentesque libero,
-              vel elementum lacus. Donec nec consectetur ligula. Donec ac
-              convallis dui. Fusce leo nisl, sodales a libero at, suscipit
-              iaculis quam. Proin condimentum orci eget varius vulputate.
-              Vivamus ultricies ipsum in pellentesque maximus. Duis est nibh,
-              efficitur et aliquet sed, vestibulum vitae ipsum. Pellentesque
-              pharetra, turpis a iaculis mattis, metus neque luctus sapien, eu
-              condimentum nibh magna in tellus. In in metus vehicula metus
-              viverra tempor. Donec eget mollis massa, in porta nisl.
-              Pellentesque quis ex condimentum, iaculis libero non, finibus
-              diam. Vestibulum ullamcorper mi nisi. Etiam sodales pretium eros,
-              nec varius ex. Maecenas quam felis, bibendum vel scelerisque id,
               consequat vitae enim. Quisque quam nisl, commodo dignissim neque
               a, pharetra bibendum lectus. Sed ultrices ex eu massa blandit
               accumsan. Donec vel magna velit. Morbi quis turpis augue. Fusce
