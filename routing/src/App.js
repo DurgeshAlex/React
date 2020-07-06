@@ -11,12 +11,14 @@ function App() {
     <Router>
       <NavbarComponent />
       <div>
-        <Route exact path="/" component={HomeComponent} />
-        <Route path="/home" component={HomeComponent} />
-        <Route path="/about-us" component={AboutUsComponent} />
-        <Route path="/contact-us" component={ContactUsComponent} />
+        <Switch>
+          <Route exact path="/" component={HomeComponent} />
+          <Route path="/home" component={HomeComponent} />
+          <Route path="/about-us" component={AboutUsComponent} />
+          <Route path="/contact-us" component={ContactUsComponent} />
 
-        <Route path="*" component={PageNotFoundComponent} />
+          <Route path="*" component={PageNotFoundComponent} />
+        </Switch>
       </div>
     </Router>
   );
