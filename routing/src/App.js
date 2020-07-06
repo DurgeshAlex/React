@@ -3,7 +3,8 @@ import HomeComponent from "./component/home";
 import NavbarComponent from "./component/navbar";
 import AboutUsComponent from "./component/aboutus";
 import ContactUsComponent from "./component/contactus";
-import { Route, BrowserRouter as Router, Link } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import PageNotFoundComponent from "./component/404";
 
 function App() {
   const routing = (
@@ -14,6 +15,8 @@ function App() {
         <Route path="/home" component={HomeComponent} />
         <Route path="/about-us" component={AboutUsComponent} />
         <Route path="/contact-us" component={ContactUsComponent} />
+
+        <Route path="*" component={PageNotFoundComponent} />
       </div>
     </Router>
   );
